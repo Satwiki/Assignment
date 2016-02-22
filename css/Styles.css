@@ -1,4 +1,4 @@
-﻿body {
+body {
      font-family: Calibri, Georgia;
     padding-top: 70px; 
     font-size: 16px;
@@ -31,7 +31,7 @@ footer {
 }
 .RightContent {
     padding-left: 5%;
-    
+    padding-right: 5%;
 }
 #tblRoomSelect td {
     padding-left: 8px;
@@ -45,9 +45,5 @@ footer {
 #HotelSearch {
     padding-top: 30px;
     display: none;
-    
-}
-footer {
-   
     
 }
