@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Hotel Search</title>
@@ -7,26 +7,28 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/Styles.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
+    
 </head>
 <body data-ng-app="hotelsearch" data-ng-controller="HotelController">
     <!-- Header -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" style="min-height: 5em;" role="navigation">
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="min-height: 4.9em;" role="navigation">
         <div class="container" id="Pageheader">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#headerNav">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">
-                    <img class="img-responsive" src="Images/logo.png" /></a>
+                    <img class="img-responsive" src="Images/logo.png" />
+                </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="headerNav" style="float: right;">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav" style="background-color: #000000">
                     <li>
                         <a href="#">View Booking info</a>
                     </li>
@@ -54,16 +56,18 @@
                         <label class="radio-inline">Check In </label>
                     </div>
                     <label class="radio-inline">
-                        <input type="radio" name="optradio" />Tonight</label>
+                        <input type="radio" name="optradio" />Tonight
+                    </label>
                     <label class="radio-inline">
-                        <input type="radio" name="optradio" />Tomorrow night</label>
+                        <input type="radio" name="optradio" />Tomorrow night
+                    </label>
                 </div>
                 <div class="form-group">
                     <div class="col-md-6">
                         <label class="radio-inline">Book for</label>
                     </div>
                     {{count}} Night
-                       <a style="padding-left: 10px;" data-ng-click="increment()"><i class="fa fa-plus-square"></i></a>
+                    <a style="padding-left: 10px;" data-ng-click="increment()"><i class="fa fa-plus-square"></i></a>
                     <a data-ng-click="decrement()"><i class="fa fa-minus-square"></i></a>
                 </div>
             </div>
@@ -74,9 +78,10 @@
                         <thead>
                             <tr>
                                 <td>
-                                    <label>Rooms</label></td>
+                                    <label>Rooms</label>
+                                </td>
                                 <td>
-                                    <select class="form-control" id="SelectRoom" data-ng-model="NoRooms">
+                                    <select class="form-control" id="SelectRoom" onchange="ShowRooms()">
                                         <option selected="selected">1</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -86,9 +91,10 @@
                                 </td>
                             </tr>
                         </thead>
-                        <tbody id="tRooms">
-                            <tr data-ng-repeat = "room in NoRooms">
-                                <td>Room {{room}}
+                        <tbody id="tbodyRooms">
+                            <tr id="tRooms">
+                                <td>
+                                    Room
                                 </td>
                                 <td>
                                     <select class="form-control" id="Select2">
@@ -98,7 +104,8 @@
                                         <option>4</option>
                                     </select>
                                 </td>
-                                <td>Adults
+                                <td>
+                                    Adults
                                 </td>
                                 <td>
                                     <select class="form-control" id="Select1">
@@ -109,13 +116,14 @@
                                     </select>
 
                                 </td>
-                                <td>Children (0-12) 
+                                <td>
+                                    Children (0-12)
                                 </td>
-                            </tr>
+                                </tr>
                         </tbody>
                     </table>
-                    <div style="bottom: 0px; float: right;" class="col-md-2">
-                        <input type="button" value="Update" class="btn-info" /></td>
+                    <div style="bottom: 0; float: right; " class="col-md-2">
+                        <input type="button" value="Update" class="btn-info" />
                     </div>
                 </div>
             </div>
@@ -143,13 +151,16 @@
                     <li>Rating: </li>
                     <li>
                         <input type="checkbox" />
-                        3 stars</li>
+                        3 stars
+                    </li>
                     <li>
                         <input type="checkbox" />
-                        4 stars</li>
+                        4 stars
+                    </li>
                     <li>
                         <input type="checkbox" />
-                        5 stars</li>
+                        5 stars
+                    </li>
                 </ul>
             </div>
             <div class="col-md-2">
@@ -209,27 +220,36 @@
 
                 <div class="col-md-4">
                     <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
                         </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        <li>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
                         </li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a>
+                        <li>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-md-12">
                     <ul class="list-inline quicklinks" style="float: right;">
-                        <li><a href="#">Home</a>
+                        <li>
+                            <a href="#">Home</a>
                         </li>
-                        <li><a href="#">About Us</a>
+                        <li>
+                            <a href="#">About Us</a>
                         </li>
-                        <li><a href="#">Terms of Use</a>
+                        <li>
+                            <a href="#">Terms of Use</a>
                         </li>
-                        <li><a href="#">Privacy Policy</a>
+                        <li>
+                            <a href="#">Privacy Policy</a>
                         </li>
-                        <li><a href="#">FAQ</a>
+                        <li>
+                            <a href="#">FAQ</a>
                         </li>
-                        <li><a href="#">Contact</a>
+                        <li>
+                            <a href="#">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -248,11 +268,23 @@
     <script src="js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-        $(function () {
-            $('#SelectRoom option[value="1"]').attr("selected", true);
-        });
+        var prevCount=1;
+        function ShowRooms() {
+            var count = $('#SelectRoom option:selected').text();
+            if (count > prevCount) {
+                for (var i = 1; i <= (count - prevCount) ; i++) {
+                    $('#tRooms').clone().appendTo('#tblRoomSelect');
+                }
+            }
+            else if (count < prevCount) {
+                for (var i = 1; i <= (prevCount - count) ; i++) {
+                    $('#tblRoomSelect tr:last').remove();
+                }
+            }
+            prevCount = count;
+        }
         function ShowSearch() {
-            $('#HotelSearch').css('display', 'block');
+            $('#HotelSearch').toggle();
         }
         var app = angular.module('hotelsearch', [])
       .controller('HotelController', function ($scope, $http) {
@@ -260,8 +292,8 @@
   .then(function (response) {
       $scope.hotels = response.data;
   });
-          $scope.NoRooms = 1;
-          var countOfRooms = $scope.NoRooms;
+          // $scope.NoRooms = 1;
+          $scope.Rooms = parseInt($scope.NoRooms, 10);
           var incremented = false;
           var decremented = false;
           $scope.count = 1;
