@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Hotel Search</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/Styles.css" />
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
+</head>
+<body data-ng-app="hotelsearch" data-ng-controller="HotelController">
+    <!-- Header -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="min-height: 5em;" role="navigation">
+        <div class="container" id="Pageheader">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img class="img-responsive" src="Images/logo.png" /></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="headerNav" style="float: right;">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">View Booking info</a>
+                    </li>
+                    <li>
+                        <a href="#">My Account</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row" id="HotelSearch">
+            <div class="col-lg-6 leftContent" style="float: left;">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="City" id="CityName" value="Hyderabad" required="" data-validation-required-message="Please enter proper city name" />
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label class="radio-inline">Check In </label>
+                    </div>
+                    <label class="radio-inline">
+                        <input type="radio" name="optradio" />Tonight</label>
+                    <label class="radio-inline">
+                        <input type="radio" name="optradio" />Tomorrow night</label>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label class="radio-inline">Book for</label>
+                    </div>
+                    {{count}} Night
+                       <a style="padding-left: 10px;" data-ng-click="increment()"><i class="fa fa-plus-square"></i></a>
+                    <a data-ng-click="decrement()"><i class="fa fa-minus-square"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-6 RightContent" style="float: right;">
+                <div class="form-group">
+                    <table id="tblRoomSelect">
+                        <thead>
+                            <tr>
+                                <td>
+                                    <label>Rooms</label></td>
+                                <td>
+                                    <select class="form-control" id="SelectRoom" data-ng-model="NoRooms">
+                                        <option selected="selected">1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                    </select>
+
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody id="tRooms">
+                            <tr data-ng-repeat = "room in NoRooms">
+                                <td>Room {{room}}
+                                </td>
+                                <td>
+                                    <select class="form-control" id="Select2">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                    </select>
+                                </td>
+                                <td>Adults
+                                </td>
+                                <td>
+                                    <select class="form-control" id="Select1">
+                                        <option class="active">1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                    </select>
+
+                                </td>
+                                <td>Children (0-12) 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="bottom: 0px; float: right;" class="col-md-2">
+                        <input type="button" value="Update" class="btn-info" /></td>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Most Recent | Star ratings | Modify Search -->
+        <div class="row" style="padding-top: 5%;">
+            <div class="col-md-6">
+                <ul class="list-inline">
+                    <li>Recent Views: </li>
+                    <li style="border-right: 1px solid;"><a href="#">Taj Krishna</a></li>
+                    <li style="border-right: 1px solid;"><a href="#">Grand Hyatt</a></li>
+                    <li style="border-right: 1px solid;"><a href="#">Taj Banjara</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">More<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Lorem Ipsum</a></li>
+                            <li><a href="#">Lorem Ipsum</a></li>
+                            <li><a href="#">Lorem Ipsum</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <ul class="list-inline">
+                    <li>Rating: </li>
+                    <li>
+                        <input type="checkbox" />
+                        3 stars</li>
+                    <li>
+                        <input type="checkbox" />
+                        4 stars</li>
+                    <li>
+                        <input type="checkbox" />
+                        5 stars</li>
+                </ul>
+            </div>
+            <div class="col-md-2">
+                <a href="#" onclick="ShowSearch()" style="font-size: 16px;">Modify Search <i style="padding-left: 8px;" class="fa fa-arrow-circle-up"></i></a>
+            </div>
+        </div>
+
+        <hr />
+        <div class="row" data-ng-controller="HotelController">
+            <!-- {{hotels}} This shows the whole data fetched by the api -->
+            <div data-ng-repeat="hotel in hotels">
+                <div id="HotelContent" class="col-lg-12" style="padding-bottom: 2%; font-size: 16px; font-weight: 100;">
+                    <div class="col-md-2">
+                        <img class="img-rounded" src="Images/TajKrishna.jpg" style="height: 160px; width: 160px;" />
+                    </div>
+                    <div class="col-md-3">
+                        <label id="txtHotelname" class="form-inline">Taj Krishna</label>
+                        <br />
+
+                        <label id="txtHotelAddress" class="form-inline">Road No. 1, Banjara Hills</label>
+
+                        <ul class="list-inline">
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star-half-full"></i></li>
+                            <li><i class="fa fa-star-o"></i></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <br />
+                        <label id="Label3" class="form-inline">Rs. 8000 for tonight</label>
+
+                        <label id="Label4" class="form-inline">Rs. 7500 for tomorrow night</label>
+
+                        <label id="Label5" class="form-inline">Rs. 9000 beyond tomorrow </label>
+                    </div>
+                    <div class="col-lg-3" style="float: right; text-align: right;">
+                        <label><i class="fa fa-angle-double-left"></i></label>
+
+                        <label id="Label6" class="form-inline">Rs. 32000</label>
+
+                        <label id="Label7" class="form-inline">Taxes and charges included</label><br />
+                        <ul class="list-inline">
+                            <li><i class="fa fa-wifi"></i></li>
+                            <li><i class="fa fa-cutlery"></i></li>
+                            <li><i class="fa fa-bed"></i></li>
+                            <li><i class="fa fa-suitcase"></i></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-12">
+                    <ul class="list-inline quicklinks" style="float: right;">
+                        <li><a href="#">Home</a>
+                        </li>
+                        <li><a href="#">About Us</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">FAQ</a>
+                        </li>
+                        <li><a href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-12" style="text-align: right;">
+                    <span class="copyright">Copyright © 2011 CheckInTonight | All Rights Reserved </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#SelectRoom option[value="1"]').attr("selected", true);
+        });
+        function ShowSearch() {
+            $('#HotelSearch').css('display', 'block');
+        }
+        var app = angular.module('hotelsearch', [])
+      .controller('HotelController', function ($scope, $http) {
+          $http.get("http://terminal2.expedia.com/x/hotels?location=17.3700,78.4800&radius=5km&dates=2016-05-19,2016-05-22&adults=3&childages=6,9&apikey=hAKwux396cjXIV1Ev0pofwoW3tTlAGbC")
+  .then(function (response) {
+      $scope.hotels = response.data;
+  });
+          $scope.NoRooms = 1;
+          var countOfRooms = $scope.NoRooms;
+          var incremented = false;
+          var decremented = false;
+          $scope.count = 1;
+          var max = $scope.count + 1
+          var min = $scope.count - 1
+          $scope.increment = function () {
+              $scope.count++;
+          };
+          $scope.decrement = function () {
+              $scope.count--;
+              if ($scope.count == 0) {
+                  $scope.count++;
+              }
+          };
+      });
+
+    </script>
+</body>
+
+</html>
+
