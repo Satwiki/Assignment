@@ -1,5 +1,10 @@
 body {
-     font-family: Calibri, Georgia;
+    background: white; /*for browser not supporting gradient */ 
+    background: -webkit-linear-gradient(#d3d3d3, #ffffff); 
+    background: -o-linear-gradient(#d3d3d3, #ffffff); 
+    background: -moz-linear-gradient(#d3d3d3, #ffffff); 
+    background: linear-gradient(#d3d3d3, #ffffff); 
+    font-family: Calibri, Georgia;
     padding-top: 70px; 
     font-size: 16px;
 }
