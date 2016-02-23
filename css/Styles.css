@@ -1,10 +1,6 @@
 body {
-    background: white; /*for browser not supporting gradient */ 
-    background: -webkit-linear-gradient(#d3d3d3, #ffffff); 
-    background: -o-linear-gradient(#d3d3d3, #ffffff); 
-    background: -moz-linear-gradient(#d3d3d3, #ffffff); 
-    background: linear-gradient(#d3d3d3, #ffffff); 
-    font-family: Calibri, Georgia;
+    
+     font-family: Calibri, Georgia;
     padding-top: 70px; 
     font-size: 16px;
 }
@@ -12,14 +8,15 @@ footer {
     margin: 50px 0;
 }
 
-#Pageheader {
-    position: fixed;
+#PageHeader {
+    background: white; /*for browser not supporting gradient */ 
+    background: -webkit-linear-gradient(#a3a3a3, #ffffff); 
+    background: -o-linear-gradient(#a3a3a3, #ffffff); 
+    background: -moz-linear-gradient(#a3a3a3, #ffffff); 
+    background: linear-gradient(#a3a3a3, #ffffff); 
     width: 100%;
-    height: auto;
-    /*background-color: #2c3e51;*/
-    display: block;
-    /*color: #fff;*/
-    margin: 0;
+    min-height: 5em; 
+    border:none;
 }
 #txtHotelAddress {
     font-size: 16px;
@@ -43,12 +40,9 @@ footer {
     padding-right: 8px;
     padding-bottom: 8px;
 }
-#HotelContent {
-    font-family: Calibri;
-    font-size: 16px;
-}
 #HotelSearch {
     padding-top: 30px;
     display: none;
     
 }
+#ulHotelContent > li:nth-child(odd) { background: #d3d3d3; }
