@@ -55,7 +55,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-6">
-                        <label class="radio-inline">Check In </label>
+                        <label id="lblCheckin" class="radio-inline">Check In </label>
                     </div>
                     <label class="radio-inline">
                         <input type="radio" value="Tonight" name="optCheck" />Tonight
@@ -186,16 +186,26 @@
     <li><a href="#">Map</a></li>
       <li><a href="#">Photos</a></li>
   </ul>
-  <div id="overview">
-      <label style="font-size: 20px;" id="modalHotelName"></label>
-        <label id="lblHotelAddress">{{HotelAddress}}</label>
-        <label id="description">{{description}}</label>
+  <div id="overview" style="padding-top: 2%; font-size: 120%;">
+      <div class="row">
+          <div class="col-md-6">
+              <label id="modalHotelName" data-ng-bind="HotelName"></label>
+              </div>
+          <div class="col-md-12">
+              <label class="form-inline">Address:&nbsp;</label><label id="modalHotelAddress"></label><br />
+              <label class="form-inline">Description:&nbsp;</label><label id="modalDesc"></label>
+              <label class="form-inline">Status:&nbsp;</label><label id="modalStatus"></label>
+              <label class="form-inline">No. of guest reviews available:&nbsp;</label><label id="modalGuestReviews"></label><br />
+              <label class="form-inline"><a id="linkMoreInfo">Click here for more info</a></label>
+          </div>
+         
+      </div>
   </div>
 </div>
   </modal>
             <ul id="ulHotelContent" style="list-style: none;">
-                <li id="listHotelContent" data-ng-click="toggleModal()" data-ng-model="id">
-
+                <li id="listHotelContent" data-ng-click="toggleModal()">
+                    <a href="#" onclick="ShowHotelDetails()">
                     <div id="HotelContent" class="col-lg-12" style="padding-bottom: 3%; font-size: 16px; font-weight: 100;">
                         <div class="col-md-2">
                             <img id="imgHotel" class="img-rounded" src="" style="height: 160px; width: 160px;" />
@@ -213,19 +223,15 @@
 
                             <label>No. of guest reviews available : &nbsp;</label><label id="lblGuestReviews"></label>
 
-
                         </div>
                         <div class="col-md-3">
                             <br />
                             <label id="Label3" class="form-inline">Rs. 8000 for tonight</label>
                             <br />
-
                             <label id="Label4" class="form-inline">Rs. 7500 for tomorrow night</label>
                             <br />
-
                             <label id="Label5" class="form-inline">Rs. 9000 beyond tomorrow </label>
                             <br />
-                            <label><a id="linkMoreInfo">Click here for more info</a></label>
                         </div>
                         <div class="col-lg-3" style="">
                             <label><i class="fa fa-angle-double-left"></i></label>
@@ -247,6 +253,7 @@
                             <label class="form-inline">Status:</label><label id="lblStatus"></label>
                         </div>
                     </div>
+                        </a> 
                 </li>
             </ul>
         </div>
@@ -345,14 +352,12 @@
                         }
 
                         $('#listHotelContent').clone().appendTo('#ulHotelContent');
+                        //$('#modalHotelName').text(value.Name);
+
                     });
                 });
-            //modal
-            var id = angular
-        .element(document.querySelector('[data-ng-controller="HotelController"]'))
-        .scope().id;
-            var txt = $("#txtHotelname").text();
-            $('#modalHotelName').text() = txt;
+           
+        
         }
         // To show the rooms dropdown
         var prevCount = 1;
@@ -396,6 +401,7 @@
 
         // To modify the search query
         function UpdateSearch() {
+          
             //Validation
             $('#ulHotelContent > li').not(':first-child').remove();
             var date = new Date();
@@ -446,6 +452,14 @@
             });
         }
         google.maps.event.addDomListener(window, 'load', initialize);
+        // To display the details of a hotel
+        function ShowHotelDetails() {
+            $('#modalHotelName').text($("#txtHotelname:first").text());
+            $('#modalHotelAddress').text($("#txtHotelAddress:first").text());
+            $('#modalDesc').text($("#lblDescription:first").text());
+            $('#modalStatus').text($("#lblStatus:first").text());
+            $('#modalGuestReviews').text($("#lblGuestReviews:first").text());
+        }
         var app = angular.module('hotelsearch', [])
       .controller('HotelController', function ($scope, $http) {
           // modal
@@ -477,7 +491,7 @@
                           '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
                           '<h4 class="modal-title">{{ title }}</h4>' +
                         '</div>' +
-                        '<div class="modal-body" ng-transclude></div>' +
+                        '<div class="modal-body" ng-transclude>'+'<label>{{ HotelName }}</label>'+'</div>' +
                       '</div>' +
                     '</div>' +
                   '</div>',
