@@ -46,3 +46,6 @@ footer {
     
 }
 #ulHotelContent > li:nth-child(odd) { background: #d3d3d3; }
+#listHotelContent a, a:hover, a:focus {
+    color: #000000;
+}
